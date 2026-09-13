@@ -472,6 +472,74 @@
             gap: 8px;
         }
 
+        /* Custom dropdown (replaces native <select> so mobile doesn't need a "Done" tap) */
+        .custom-select {
+            position: relative;
+        }
+
+        .custom-select__trigger {
+            width: 100%;
+            text-align: left;
+            padding: 12px 14px;
+            font-size: 15px;
+            font-family: inherit;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            background-color: #ffffff;
+            cursor: pointer;
+            position: relative;
+            color: #888888;
+        }
+
+        .custom-select__trigger.has-value {
+            color: #1a1a1a;
+        }
+
+        .custom-select__trigger::after {
+            content: "▾";
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666666;
+        }
+
+        .custom-select__panel {
+            display: none;
+            position: absolute;
+            top: calc(100% + 4px);
+            left: 0;
+            right: 0;
+            max-height: 240px;
+            overflow-y: auto;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            z-index: 20;
+        }
+
+        .custom-select.is-open .custom-select__panel {
+            display: block;
+        }
+
+        .custom-select__option {
+            padding: 12px 14px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .custom-select__option:hover,
+        .custom-select__option:active {
+            background-color: #f7f7f7;
+        }
+
+        .custom-select__option.is-selected {
+            background-color: #fdeaea;
+            color: #990000;
+            font-weight: bold;
+        }
+
         /* ==========================================================
            FAQ ACCORDION
            ========================================================== */
@@ -611,7 +679,6 @@
             <a href="#form" class="btn btn-red">Claim This Offer Now</a>
         </div>
     </div>
-    
 
     <!-- WHY IT WORKS -->
     <div class="wrap section">
@@ -718,9 +785,9 @@
         <div class="testimonial-card">
             <img src="assets/a1e45915-b773-489c-af5f-72f8fbb2f4e8.png" alt="Customer testimonial" class="testimonial-card__image">
             <div class="testimonial-card__body">
-                <p>I used to feel embarrassed about my Penis size, and my wife would often complain that I wasn't satisfying her in bed.</p>
-                <p>I started using Performance Coffee for 3 weeks ago, my performance has improved greatly, I can last up to 30 minutes now and I've gained over an inch so far,</p>
-                <p>One thing I love about Performance is that it works really fast...</p>
+                <p>I used to feel embarrassed about my size, and my wife would often complain that I wasn't satisfying her in bed.</p>
+                <p>I started using SuperViga Erection Capsules 3 weeks ago, my performance has improved greatly, I can last up to 30 minutes now and I've gained over an inch so far,</p>
+                <p>One thing I love about SuperViga Erection Capsules is that it works really fast...</p>
                 <div class="testimonial-card__stars">★★★★★</div>
                 <div class="testimonial-card__name">Engr Bayo from Abuja</div>
             </div>
@@ -829,55 +896,61 @@
                 </div>
                 <div class="field">
                     <label for="state">Delivery State</label>
-                    <select id="state" name="state" required>
-                        <option value="" disabled selected>Select your state</option>
-                        <option>Abia</option>
-                        <option>Adamawa</option>
-                        <option>Akwa Ibom</option>
-                        <option>Anambra</option>
-                        <option>Bauchi</option>
-                        <option>Bayelsa</option>
-                        <option>Benue</option>
-                        <option>Borno</option>
-                        <option>Cross River</option>
-                        <option>Delta</option>
-                        <option>Ebonyi</option>
-                        <option>Edo</option>
-                        <option>Ekiti</option>
-                        <option>Enugu</option>
-                        <option>Gombe</option>
-                        <option>Imo</option>
-                        <option>Jigawa</option>
-                        <option>Kaduna</option>
-                        <option>Kano</option>
-                        <option>Katsina</option>
-                        <option>Kebbi</option>
-                        <option>Kogi</option>
-                        <option>Kwara</option>
-                        <option>Lagos</option>
-                        <option>Nasarawa</option>
-                        <option>Niger</option>
-                        <option>Ogun</option>
-                        <option>Ondo</option>
-                        <option>Osun</option>
-                        <option>Oyo</option>
-                        <option>Plateau</option>
-                        <option>Rivers</option>
-                        <option>Sokoto</option>
-                        <option>Taraba</option>
-                        <option>Yobe</option>
-                        <option>Zamfara</option>
-                        <option>FCT (Abuja)</option>
-                    </select>
+                    <div class="custom-select" data-name="state" data-required="true">
+                        <button type="button" class="custom-select__trigger">Select your state</button>
+                        <input type="hidden" name="state" required>
+                        <div class="custom-select__panel">
+                            <div class="custom-select__option">Abia</div>
+                            <div class="custom-select__option">Adamawa</div>
+                            <div class="custom-select__option">Akwa Ibom</div>
+                            <div class="custom-select__option">Anambra</div>
+                            <div class="custom-select__option">Bauchi</div>
+                            <div class="custom-select__option">Bayelsa</div>
+                            <div class="custom-select__option">Benue</div>
+                            <div class="custom-select__option">Borno</div>
+                            <div class="custom-select__option">Cross River</div>
+                            <div class="custom-select__option">Delta</div>
+                            <div class="custom-select__option">Ebonyi</div>
+                            <div class="custom-select__option">Edo</div>
+                            <div class="custom-select__option">Ekiti</div>
+                            <div class="custom-select__option">Enugu</div>
+                            <div class="custom-select__option">Gombe</div>
+                            <div class="custom-select__option">Imo</div>
+                            <div class="custom-select__option">Jigawa</div>
+                            <div class="custom-select__option">Kaduna</div>
+                            <div class="custom-select__option">Kano</div>
+                            <div class="custom-select__option">Katsina</div>
+                            <div class="custom-select__option">Kebbi</div>
+                            <div class="custom-select__option">Kogi</div>
+                            <div class="custom-select__option">Kwara</div>
+                            <div class="custom-select__option">Lagos</div>
+                            <div class="custom-select__option">Nasarawa</div>
+                            <div class="custom-select__option">Niger</div>
+                            <div class="custom-select__option">Ogun</div>
+                            <div class="custom-select__option">Ondo</div>
+                            <div class="custom-select__option">Osun</div>
+                            <div class="custom-select__option">Oyo</div>
+                            <div class="custom-select__option">Plateau</div>
+                            <div class="custom-select__option">Rivers</div>
+                            <div class="custom-select__option">Sokoto</div>
+                            <div class="custom-select__option">Taraba</div>
+                            <div class="custom-select__option">Yobe</div>
+                            <div class="custom-select__option">Zamfara</div>
+                            <div class="custom-select__option">FCT (Abuja)</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="field">
                     <label for="gender">Gender</label>
-                    <select id="gender" name="gender">
-                        <option value="" disabled selected>Select gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Prefer not to say</option>
-                    </select>
+                    <div class="custom-select" data-name="gender">
+                        <button type="button" class="custom-select__trigger">Select gender</button>
+                        <input type="hidden" name="gender">
+                        <div class="custom-select__panel">
+                            <div class="custom-select__option">Male</div>
+                            <div class="custom-select__option">Female</div>
+                            <div class="custom-select__option">Prefer not to say</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="field">
                     <label>Choose Your Package</label>
@@ -995,9 +1068,57 @@
             });
         });
 
+        // Custom dropdown: tap to open, tap an option to select and close immediately
+        document.querySelectorAll('.custom-select').forEach(function (dropdown) {
+            var trigger = dropdown.querySelector('.custom-select__trigger');
+            var hiddenInput = dropdown.querySelector('input[type="hidden"]');
+            var options = dropdown.querySelectorAll('.custom-select__option');
+
+            trigger.addEventListener('click', function (e) {
+                e.stopPropagation();
+                document.querySelectorAll('.custom-select.is-open').forEach(function (open) {
+                    if (open !== dropdown) open.classList.remove('is-open');
+                });
+                dropdown.classList.toggle('is-open');
+            });
+
+            options.forEach(function (option) {
+                option.addEventListener('click', function () {
+                    hiddenInput.value = option.textContent.trim();
+                    trigger.textContent = option.textContent.trim();
+                    trigger.classList.add('has-value');
+                    options.forEach(function (o) { o.classList.remove('is-selected'); });
+                    option.classList.add('is-selected');
+                    dropdown.classList.remove('is-open');
+                });
+            });
+        });
+
+        // Close any open custom dropdown when tapping elsewhere on the page
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.custom-select.is-open').forEach(function (open) {
+                open.classList.remove('is-open');
+            });
+        });
+
         // After the order form is submitted, send the user to the thank-you page
         document.getElementById('order-form').addEventListener('submit', function (e) {
             e.preventDefault();
+
+            // Check the required custom dropdown(s) since hidden inputs don't
+            // always trigger the browser's built-in validation reliably
+            var missing = [];
+            document.querySelectorAll('.custom-select[data-required="true"]').forEach(function (dropdown) {
+                var hiddenInput = dropdown.querySelector('input[type="hidden"]');
+                if (!hiddenInput.value) missing.push(dropdown);
+            });
+
+            if (missing.length > 0) {
+                missing[0].querySelector('.custom-select__trigger').focus();
+                missing[0].querySelector('.custom-select__trigger').style.borderColor = '#cc0000';
+                return;
+            }
+
             window.location.href = 'thank-you.html';
         });
     </script>
