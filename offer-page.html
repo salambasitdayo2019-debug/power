@@ -284,6 +284,51 @@
         }
 
         /* ==========================================================
+           TESTIMONIAL CARD
+           ========================================================== */
+        .testimonial-card {
+            max-width: 380px;
+            margin: 0 auto 25px auto;
+            border: 1px solid #e2e2e2;
+            border-radius: 14px;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        .testimonial-card__image {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            object-fit: cover;
+            display: block;
+        }
+
+        .testimonial-card__body {
+            padding: 22px 20px;
+        }
+
+        .testimonial-card__body p {
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 1.5;
+            color: #000000;
+            margin-bottom: 18px;
+        }
+
+        .testimonial-card__stars {
+            color: #f5a623;
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .testimonial-card__name {
+            text-align: center;
+            font-weight: bold;
+            color: #1a73e8;
+            font-size: 15px;
+        }
+
+        /* ==========================================================
            PRICING
            ========================================================== */
         .pricing-grid {
@@ -540,13 +585,6 @@
 
         <img src="assets/PixelLab.Studio-1789316337534.png" alt="Performance coffee capsules" class="image-placeholder">
 
-          <p class="big-red-heading">
-            Rock Hard Erection Within 45mins of usage
-
-        </p>
-
-        <img src="https://d1yei2z3i6k35z.cloudfront.net/5399632/6957b87470f27_WhatsAppImage2026-01-02at12.0.jpeg" alt="Natural and safe way to increase" class="secondary-image">
-
         <p class="sub-headline">
             This Is What A 6-7 Inch Looks Like At Full Erection (the size your woman craves)👇
         </p>
@@ -673,6 +711,21 @@
         </div>
     </div>
 
+    <!-- TESTIMONIAL -->
+    <div class="wrap section">
+        <h2 class="center">What Our Customers Are Saying</h2>
+        <div class="testimonial-card">
+            <img src="assets/a1e45915-b773-489c-af5f-72f8fbb2f4e8.png" alt="Customer testimonial" class="testimonial-card__image">
+            <div class="testimonial-card__body">
+                <p>I used to feel embarrassed about my Penis size, and my wife would often complain that I wasn't satisfying her in bed.</p>
+                <p>I started using Performance Coffee for 3 weeks ago, my performance has improved greatly, I can last up to 30 minutes now and I've gained over an inch so far,</p>
+                <p>One thing I love about Performance is that it works really fast...</p>
+                <div class="testimonial-card__stars">★★★★★</div>
+                <div class="testimonial-card__name">Engr Bayo from Abuja</div>
+            </div>
+        </div>
+    </div>
+
     <!-- PRICING -->
     <div class="wrap section" id="pricing">
         <h2 class="center">Pricing</h2>
@@ -693,7 +746,7 @@
                     <li>100% money-back guarantee</li>
                     <li>Lasts 5 weeks (10 sachets)</li>
                 </ul>
-                <button class="btn btn-black btn--block" data-select-package="REGULAR OFFER (1 Pack = ₦39,500)">CLICK HERE</button>
+                <button class="btn btn-black btn--block" data-select-package="REGULAR OFFER (1 Pack = ₦39,500)">Order Now</button>
             </div>
 
             <div class="price-card price-card--featured">
@@ -709,7 +762,7 @@
                     <li>100% money-back guarantee</li>
                     <li>Lasts 2 months 2 weeks</li>
                 </ul>
-                <button class="btn btn-red btn--block" data-select-package="DOUBLE DEAL (2 Packs = ₦59,000)">CLICK HERE</button>
+                <button class="btn btn-red btn--block" data-select-package="DOUBLE DEAL (2 Packs = ₦59,000)">Order Now</button>
             </div>
 
             <div class="price-card">
@@ -725,7 +778,7 @@
                     <li>100% money-back guarantee</li>
                     <li>Lasts 2 months 2 weeks</li>
                 </ul>
-                <button class="btn btn-black btn--block" data-select-package="MEGA SAVER (3 Packs + 1 = ₦92,500)">CLICK HERE</button>
+                <button class="btn btn-black btn--block" data-select-package="MEGA SAVER (3 Packs + 1 = ₦92,500)">Order Now</button>
             </div>
         </div>
 
@@ -930,13 +983,21 @@
             });
         });
 
-        // Pricing card buttons auto-select the matching package radio in the form
+        // Pricing card buttons auto-select the matching package radio in the form,
+        // then scroll the user down to the order form
         document.querySelectorAll('[data-select-package]').forEach(function (button) {
             button.addEventListener('click', function () {
                 var value = this.getAttribute('data-select-package');
                 var radio = document.querySelector('input[name="package"][value="' + value + '"]');
                 if (radio) radio.checked = true;
+                document.getElementById('form').scrollIntoView({ behavior: 'smooth' });
             });
+        });
+
+        // After the order form is submitted, send the user to the thank-you page
+        document.getElementById('order-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            window.location.href = 'thank-you.html';
         });
     </script>
 
